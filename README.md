@@ -11,6 +11,10 @@ Check `chrome/` for Chrome extension, `firefox/` for Firefox add-on.
 - [Firefox Browser Add-ons](https://addons.mozilla.org/ja/firefox/addon/breakthrough-twitter-loginwall/)
 
 
+## Screenshots
+
+![](https://raw.githubusercontent.com/MaySoMusician/breakthrough-twitter-login-wall/default/images/screenshot-en-01.png)
+
 ## License
 
 [MIT](https://choosealicense.com/licenses/mit/)
