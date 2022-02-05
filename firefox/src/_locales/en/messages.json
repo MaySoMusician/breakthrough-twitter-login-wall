@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "Breakthrough Twitter Login Wall"
+  },
+  "extDescription": {
+    "message": "Bypass 'Log in to continue' of Twitter, added in August 2021"
+  },
+  "addedLater": {
+    "message": "No content here (something may be added)"
+  },
+  "removalTitle": {
+    "message": "Login wall removed!"
+  },
+  "donationText": {
+    "message": "{donationLink} will help me to keep continuing to catch up with the changes of the Twitter app."
+  },
+  "donationLink": {
+    "message": "Your donation"
+  },
+  "updateTitle": {
+    "message": "BTWL Updated!"
+  },
+  "updateText1": {
+    "message": "Hi, I'm a dev of {btwl}, the extension that hides an annoying login wall. I'm glad that more and more people have recently tried the extension!"
+  },
+  "updateText1_btwl": {
+    "message": "BTWL"
+  },
+  "updateText2": {
+    "message": "If you find it useful, why don't you {donateMe} to help improve it?"
+  },
+  "updateText2_donateMe": {
+    "message" : "donate me"
+  }
+}

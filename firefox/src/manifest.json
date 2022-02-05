@@ -1,0 +1,41 @@
+{
+  "name": "__MSG_extName__",
+  "short_name": "BTLW",
+  "version": "1.0.0",
+  "manifest_version": 2,
+  "description": "__MSG_extDescription__",
+  "permissions": ["*://twitter.com/*", "storage"],
+  "background": {
+    "scripts": ["background.js"],
+    "persistent": false
+  },
+  "page_action": {
+    "default_title": "Breakthrough Twitter Login Wall",
+    "default_popup": "popup.html",
+    "default_icon": {
+      "16": "img/icon16.png",
+      "32": "img/icon32.png"
+    }
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://twitter.com/*"],
+      "run_at": "document_idle",
+      "js": [
+        "bulma/bulma-css.js",
+        "utils.js",
+        "msgBox.js",
+        "remover.js",
+        "script.js"
+      ]
+    }
+  ],
+  "icons": {
+    "16": "img/icon16.png",
+    "32": "img/icon32.png",
+    "48": "img/icon48.png",
+    "128": "img/icon128.png"
+  },
+  "incognito": "spanning",
+  "default_locale": "en"
+}

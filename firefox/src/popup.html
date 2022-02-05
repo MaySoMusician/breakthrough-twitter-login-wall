@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Breakthrough Twitter Login Wall</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        background-color: rgb(255, 255, 255);
+        font-size: 16px;
+        width: 300px
+      }
+      #header {
+        display: flex;
+        margin-bottom: .5rem;
+        align-items: center;
+      }
+      #header * {
+        flex: 1 1 auto;
+      }
+      #logo {
+        display: block;
+        margin: auto;
+        width: 52px;
+        height: 52px;
+      }
+      h1{
+        font-size: 16px;
+        margin-left: 1rem;
+      }
+      #buttons {
+        display: flex;
+        align-items: stretch;
+        flex-direction: row;
+        font-size: 13px
+      }
+      #buttons button {
+        border: 2px solid rgb(185, 0, 0);
+        background-color: white;
+        color: rgb(185, 0, 0);
+        padding: .5rem 1rem;
+        margin: .2rem .5rem;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      #buttons button:hover {
+        background-color: rgb(185, 0, 0);
+        color:white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="header">
+      <img id="logo" src="img/icon.svg" />
+      <h1 id="popup-title">Breakthrough Twitter Login Wall</h1>
+    </div>
+    <div id="buttons">
+      <!-- <button id="simplify">Simplify!</button>
+      <button id="download">Download images</button> -->
+      <span id="buttons-text1">Your donation will help me to keep continuing to catch up with the changes of the Twitter app.</span>
+    </div>
+    <script src="popup.js"></script>
+  </body>
+</html>
