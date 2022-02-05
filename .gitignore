@@ -210,3 +210,4 @@ $RECYCLE.BIN/
 
 chrome/out/
 firefox/out/
+*.xcf
