@@ -1,0 +1,35 @@
+{
+  "extName": {
+    "message": "Twitter ログイン必須突破ツール"
+  },
+  "extDescription": {
+    "message": "2021年8月から適用された、ログインしないとTwitterを閲覧できない問題を回避します"
+  },
+  "addedLater": {
+    "message": "まだ何もありません（後日何か追加されるかも）"
+  },
+  "removalTitle": {
+    "message": "ログイン画面突破！"
+  },
+  "donationText": {
+    "message": "{donationLink}していただくことで、Twitterの仕様変更に追従し続けられるようになります。"
+  },
+  "donationLink": {
+    "message": "皆さまに寄付"
+  },
+  "updateTitle": {
+    "message": "ログイン必須回避ツール 更新！"
+  },
+  "updateText1": {
+    "message": "こんにちは、こちらは{btwl}の開発者です。ここ数日、この拡張機能のユーザーが増えており嬉しい限りです。"
+  },
+  "updateText1_btwl": {
+    "message": "Twitterログイン必須突破ツール"
+  },
+  "updateText2": {
+    "message": "この拡張機能が便利だと感じたら、ぜひ{donateMe}して開発の手助けをお願いします！"
+  },
+  "updateText2_donateMe": {
+    "message" : "私に寄付"
+  }
+}
