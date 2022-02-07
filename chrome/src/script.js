@@ -71,13 +71,11 @@ const showUpdateWindow = () => {
     currentUpdateMsgBoxInstance.destory()
     currentUpdateMsgBoxInstance = undefined
   }
-  const title = chrome.i18n.getMessage('updateTitle') // 'BTWL Updated!'
+  const title = chrome.i18n.getMessage('updateTitle')
   const updateText1 = chrome.i18n.getMessage('updateText1')
-  // "I'm a dev of {btwl}, the extension that hides an annoying login wall. I'm glad that more and more people have recently tried the extension!"
-  const btwlText = chrome.i18n.getMessage('updateText1_btwl') // 'BTWL'
+  const btwlText = chrome.i18n.getMessage('updateText1_btwl')
   const updateText2 = chrome.i18n.getMessage('updateText2')
-  // "If you find it useful, why don't you {donateMe} to help improve it?"
-  const donateMeText = chrome.i18n.getMessage('updateText2_donateMe') //'donate me'
+  const donateMeText = chrome.i18n.getMessage('updateText2_donateMe')
 
   const btwlLink = document.createElement('a')
   btwlLink.classList.add(...['has-text-link'])
