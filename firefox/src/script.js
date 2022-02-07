@@ -140,7 +140,7 @@ const observer = setInterval(() => {
         globalThis.BTLW__STORAGE_KEYS.removalLastShown
       ]
 
-      if (!lastShown || Date.now() - lastShown > 24 * 60 * 60 * 1000) {
+      if (!lastShown || Date.now() - lastShown > 2 * 24 * 60 * 60 * 1000) {
         showDonationWindow()
       }
     }, 300)
