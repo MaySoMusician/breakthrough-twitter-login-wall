@@ -38,7 +38,8 @@ function attemptLoginWallRemoval() {
 
       // dialogElements[0] --> a <div> containing photos and tweets
       // dialogElements[1] --> containing a login wall dialog
-      hidden = _hideLoginDialog(dialogElements[1])
+      const target = dialogElements[1].parentNode.parentNode.parentNode
+      hidden = _hideLoginDialog(target)
 
       applyOrderedStyles(htmlElem, [
         ['overflow', 'hidden'],
@@ -48,7 +49,8 @@ function attemptLoginWallRemoval() {
     }
   } else {
     if (dialogElements.length >= 1) {
-      hidden = _hideLoginDialog(dialogElements[0])
+      const target = dialogElements[0].parentNode.parentNode.parentNode
+      hidden = _hideLoginDialog(target)
 
       applyOrderedStyles(htmlElem, [
         ['overflow', 'auto scroll'],
