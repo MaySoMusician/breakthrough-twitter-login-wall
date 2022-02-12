@@ -81,7 +81,7 @@ const showUpdateWindow = () => {
   btwlLink.classList.add(...['has-text-link'])
   btwlLink.innerText = btwlText
   btwlLink.href =
-    'https://chrome.google.com/webstore/detail/breakthrough-twitter-logi/ohhifopcgokjpbnppnmjbdnjnfcfnlep'
+    'https://addons.mozilla.org/ja/firefox/addon/breakthrough-twitter-loginwall/'
   btwlLink.target = '_blank'
   btwlLink.rel = 'noopener noreferrer'
 
