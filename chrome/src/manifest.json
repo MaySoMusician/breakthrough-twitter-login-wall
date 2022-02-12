@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "short_name": "BTLW",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "manifest_version": 3,
   "description": "__MSG_extDescription__",
   "permissions": ["declarativeContent", "storage"],
