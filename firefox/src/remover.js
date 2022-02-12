@@ -29,16 +29,21 @@ function attemptLoginWallRemoval() {
       )
     )
     .flat()
+    .filter((elem) => {
+      const photo = elem.querySelector(
+        ':scope > div > div > div[role="group"] > div[aria-modal="true"][aria-labelledby="modal-header"][role="dialog"]'
+      )
+      // element containing any photo should not be hidden
+      return photo === null
+    })
 
   let hidden = false
 
   if (isPhotoDetailPage) {
-    if (dialogElements.length >= 2) {
+    if (dialogElements.length >= 1) {
       // Photo detail view
 
-      // dialogElements[0] --> a <div> containing photos and tweets
-      // dialogElements[1] --> containing a login wall dialog
-      const target = dialogElements[1].parentNode.parentNode.parentNode
+      const target = dialogElements[0].parentNode.parentNode.parentNode
       hidden = _hideLoginDialog(target)
 
       applyOrderedStyles(htmlElem, [
