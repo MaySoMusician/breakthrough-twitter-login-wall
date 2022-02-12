@@ -24,4 +24,4 @@ Check `chrome/` for Chrome extension, `firefox/` for Firefox add-on.
 
 [@MaySoMusician](https://www.github.com/MaySoMusician)
 
-If you enjoyed the project, [buy me a coffee!](https://www.buymeacoffee.com/maysomusician)
+If you enjoyed the project, [buy me a tea!](https://www.buymeacoffee.com/maysomusician)
