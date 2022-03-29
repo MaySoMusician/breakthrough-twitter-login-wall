@@ -4,7 +4,7 @@
   "version": "1.0.2",
   "manifest_version": 2,
   "description": "__MSG_extDescription__",
-  "permissions": ["*://twitter.com/*", "storage"],
+  "permissions": ["*://twitter.com/*", "*://mobile.twitter.com/*", "storage"],
   "background": {
     "scripts": ["background.js"],
     "persistent": false
@@ -20,6 +20,17 @@
   "content_scripts": [
     {
       "matches": ["https://twitter.com/*"],
+      "run_at": "document_idle",
+      "js": [
+        "bulma/bulma-css.js",
+        "utils.js",
+        "msgBox.js",
+        "remover.js",
+        "script.js"
+      ]
+    },
+    {
+      "matches": ["https://mobile.twitter.com/*"],
       "run_at": "document_idle",
       "js": [
         "bulma/bulma-css.js",

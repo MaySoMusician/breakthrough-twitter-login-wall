@@ -27,6 +27,17 @@
         "remover.js",
         "script.js"
       ]
+    },
+    {
+      "matches": ["https://mobile.twitter.com/*"],
+      "run_at": "document_idle",
+      "js": [
+        "bulma/bulma-css.js",
+        "utils.js",
+        "msgBox.js",
+        "remover.js",
+        "script.js"
+      ]
     }
   ],
   "icons": {
