@@ -24,6 +24,7 @@
         "bulma/bulma-css.js",
         "utils.js",
         "msgBox.js",
+        "interval.js",
         "remover.js",
         "script.js"
       ]
@@ -35,6 +36,7 @@
         "bulma/bulma-css.js",
         "utils.js",
         "msgBox.js",
+        "interval.js",
         "remover.js",
         "script.js"
       ]

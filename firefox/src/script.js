@@ -143,6 +143,14 @@ watch(() => {
   }, 300)
 })
 
+globalThis.htmlStylesCheckTimer = new EconomicalInterval(
+  () => {
+    restyleHtmlElement()
+  },
+  500,
+  30 * 1000
+)
+
 //
 ;(async () => {
   let update = (await browser.storage.local.get())[

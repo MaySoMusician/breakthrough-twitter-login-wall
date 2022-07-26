@@ -29,11 +29,6 @@ async function watch(callbackAfterRemoval) {
   const layersDiv = await _getLayersDiv()
 
   const observer = new MutationObserver((mutationRecords) => {
-    const htmlElem = document.querySelector('html')
-    const isPhotoDetailPage = document.location.href.match(
-      /\/status\/.*\/photo\//
-    )
-
     /** @type {HTMLDivElement[]} */
     const dialogElements = mutationRecords
       .flatMap((record) => Array.from(record.addedNodes))
@@ -57,15 +52,27 @@ async function watch(callbackAfterRemoval) {
     const hideTarget = dialogElements[0].parentNode.parentNode.parentNode
     const hidden = _hideLoginDialog(hideTarget)
 
-    applyOrderedStyles(htmlElem, [
-      ['overflow', isPhotoDetailPage ? 'hidden' : 'auto scroll'],
-      ['overscrollBehaviorY', isPhotoDetailPage ? 'none' : ''],
-      ['marginRight', ''],
-    ])
+    restyleHtmlElement()
+
+    if (globalThis.htmlStylesCheckTimer) {
+      globalThis.htmlStylesCheckTimer.start()
+    }
 
     if (hidden) {
       callbackAfterRemoval()
     }
   })
   observer.observe(layersDiv, { childList: true, subtree: false })
+}
+
+function restyleHtmlElement() {
+  const htmlElem = document.querySelector('html')
+  const isPhotoDetailPage = document.location.href.match(
+    /\/status\/.*\/photo\//
+  )
+  applyOrderedStyles(htmlElem, [
+    ['overflow', isPhotoDetailPage ? 'hidden' : 'auto scroll'],
+    ['overscrollBehaviorY', isPhotoDetailPage ? 'none' : ''],
+    ['marginRight', ''],
+  ])
 }
