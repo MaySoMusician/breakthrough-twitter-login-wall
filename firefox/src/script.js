@@ -25,13 +25,13 @@ let currentDonationMsgBoxInstance = undefined
 /** @type {BulmaMessageBox | undefined} */
 let currentUpdateMsgBoxInstance = undefined
 
-const showDonationWindow = () => {
+const showWallRemovalWindow = () => {
   if (currentDonationMsgBoxInstance) {
     currentDonationMsgBoxInstance.destory()
     currentDonationMsgBoxInstance = undefined
   }
   const title = browser.i18n.getMessage('removalTitle')
-  const donationText = browser.i18n.getMessage('donationText')
+  const removalText = browser.i18n.getMessage('removalText')
   const donationLinkText = browser.i18n.getMessage('donationLink')
 
   const donationLink = document.createElement('a')
@@ -41,7 +41,7 @@ const showDonationWindow = () => {
   donationLink.target = '_blank'
   donationLink.rel = 'noopener noreferrer'
 
-  const donationTextHtml = replacePlaceholders(donationText, {
+  const removalTextHtml = replacePlaceholders(removalText, {
     donationLink: donationLink.outerHTML,
   })
 
@@ -49,7 +49,7 @@ const showDonationWindow = () => {
     root,
     'donation',
     title,
-    donationTextHtml
+    removalTextHtml
   )
   currentDonationMsgBoxInstance = donationMessageBox
 
@@ -115,7 +115,7 @@ const showUpdateWindow = () => {
     const update = (await browser.storage.local.get())[
       globalThis.BTLW__STORAGE_KEYS.update
     ]
-    update['1.0.0'] = true
+    update['2.0.0'] = true
     await browser.storage.local.set({
       [globalThis.BTLW__STORAGE_KEYS.update]: update,
     })
@@ -138,7 +138,7 @@ watch(() => {
     ]
 
     if (!lastShown || Date.now() - lastShown > 7 * 24 * 60 * 60 * 1000) {
-      showDonationWindow()
+      showWallRemovalWindow()
     }
   }, 300)
 })
@@ -164,7 +164,7 @@ globalThis.htmlStylesCheckTimer = new EconomicalInterval(
     })
   }
 
-  if (!update['1.0.0']) {
+  if (!update['2.0.0']) {
     const showIfNotInPhotoDetail = async () => {
       const isPhotoDetailPage = document.location.href.match(
         /\/status\/.*\/photo\//

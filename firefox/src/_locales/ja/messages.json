@@ -9,19 +9,22 @@
     "message": "まだ何もありません（後日何か追加されるかも）"
   },
   "removalTitle": {
-    "message": "ログイン画面突破！"
+    "message": "ギガスラッシュ！"
+  },
+  "removalText": {
+    "message": "目前の壁は音もなく消え去った。{donationLink}がHPを回復し、Twitterへ挑み続ける手助けになるだろう..."
   },
   "donationText": {
-    "message": "{donationLink}していただくことで、Twitterの仕様変更に追従し続けられるようになります。"
+    "message": "{donationLink}で、Twitterの仕様変更に追従し続けられるようになります。"
   },
   "donationLink": {
-    "message": "皆さまに寄付"
+    "message": "あなたの寄付"
   },
   "updateTitle": {
     "message": "ログイン必須回避ツール 更新！"
   },
   "updateText1": {
-    "message": "こんにちは、こちらは{btwl}の開発者です。ここ数日、この拡張機能のユーザーが増えており嬉しい限りです。"
+    "message": "{btwl}は、一瞬もポップアップを出さずにログイン画面を消せるようになりました。MutationObserverを使うようご提案いただきありがとうございました。"
   },
   "updateText1_btwl": {
     "message": "Twitterログイン必須突破ツール"
