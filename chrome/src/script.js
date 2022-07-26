@@ -25,13 +25,13 @@ let currentDonationMsgBoxInstance = undefined
 /** @type {BulmaMessageBox | undefined} */
 let currentUpdateMsgBoxInstance = undefined
 
-const showDonationWindow = () => {
+const showWallRemovalWindow = () => {
   if (currentDonationMsgBoxInstance) {
     currentDonationMsgBoxInstance.destory()
     currentDonationMsgBoxInstance = undefined
   }
   const title = chrome.i18n.getMessage('removalTitle')
-  const donationText = chrome.i18n.getMessage('donationText')
+  const removalText = chrome.i18n.getMessage('removalText')
   const donationLinkText = chrome.i18n.getMessage('donationLink')
 
   const donationLink = document.createElement('a')
@@ -41,7 +41,7 @@ const showDonationWindow = () => {
   donationLink.target = '_blank'
   donationLink.rel = 'noopener noreferrer'
 
-  const donationTextHtml = replacePlaceholders(donationText, {
+  const removalTextHtml = replacePlaceholders(removalText, {
     donationLink: donationLink.outerHTML,
   })
 
@@ -49,7 +49,7 @@ const showDonationWindow = () => {
     root,
     'donation',
     title,
-    donationTextHtml
+    removalTextHtml
   )
   currentDonationMsgBoxInstance = donationMessageBox
 
@@ -115,7 +115,7 @@ const showUpdateWindow = () => {
     const update = (await chrome.storage.local.get())[
       globalThis.BTLW__STORAGE_KEYS.update
     ]
-    update['1.0.0'] = true
+    update['2.0.0'] = true
     await chrome.storage.local.set({
       [globalThis.BTLW__STORAGE_KEYS.update]: update,
     })
@@ -126,27 +126,32 @@ const showUpdateWindow = () => {
   updateMessageBox.show()
 }
 
-const observer = setInterval(() => {
-  const removed = attemptLoginWallRemoval()
+watch(() => {
+  setTimeout(async () => {
+    if (currentUpdateMsgBoxInstance) {
+      currentUpdateMsgBoxInstance.destory()
+      currentUpdateMsgBoxInstance = undefined
+    }
 
-  if (removed) {
-    setTimeout(async () => {
-      if (currentUpdateMsgBoxInstance) {
-        currentUpdateMsgBoxInstance.destory()
-        currentUpdateMsgBoxInstance = undefined
-      }
+    const lastShown = (await chrome.storage.local.get())[
+      globalThis.BTLW__STORAGE_KEYS.removalLastShown
+    ]
 
-      const lastShown = (await chrome.storage.local.get())[
-        globalThis.BTLW__STORAGE_KEYS.removalLastShown
-      ]
+    if (!lastShown || Date.now() - lastShown > 7 * 24 * 60 * 60 * 1000) {
+      showWallRemovalWindow()
+    }
+  }, 300)
+})
 
-      if (!lastShown || Date.now() - lastShown > 2 * 24 * 60 * 60 * 1000) {
-        showDonationWindow()
-      }
-    }, 300)
-  }
-}, 1000)
+globalThis.htmlStylesCheckTimer = new EconomicalInterval(
+  () => {
+    restyleHtmlElement()
+  },
+  500,
+  30 * 1000
+)
 
+//
 ;(async () => {
   let update = (await chrome.storage.local.get())[
     globalThis.BTLW__STORAGE_KEYS.update
@@ -159,7 +164,7 @@ const observer = setInterval(() => {
     })
   }
 
-  if (!update['1.0.0']) {
+  if (!update['2.0.0']) {
     const showIfNotInPhotoDetail = async () => {
       const isPhotoDetailPage = document.location.href.match(
         /\/status\/.*\/photo\//

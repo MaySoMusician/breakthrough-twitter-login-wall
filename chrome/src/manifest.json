@@ -1,7 +1,7 @@
 {
   "name": "__MSG_extName__",
   "short_name": "BTLW",
-  "version": "1.0.2",
+  "version": "2.0.0",
   "manifest_version": 3,
   "description": "__MSG_extDescription__",
   "permissions": ["declarativeContent", "storage"],
@@ -24,6 +24,19 @@
         "bulma/bulma-css.js",
         "utils.js",
         "msgBox.js",
+        "interval.js",
+        "remover.js",
+        "script.js"
+      ]
+    },
+    {
+      "matches": ["https://mobile.twitter.com/*"],
+      "run_at": "document_idle",
+      "js": [
+        "bulma/bulma-css.js",
+        "utils.js",
+        "msgBox.js",
+        "interval.js",
         "remover.js",
         "script.js"
       ]

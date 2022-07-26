@@ -9,7 +9,10 @@
     "message": "No content here (something may be added)"
   },
   "removalTitle": {
-    "message": "Login wall removed!"
+    "message": "Gigaslashed!"
+  },
+  "removalText": {
+    "message": "The wall in front of you soundlessly vanished. {donationLink} could help heal HP and keep challenging to Twitter..."
   },
   "donationText": {
     "message": "{donationLink} will help me to keep continuing to catch up with the changes of the Twitter app."
@@ -21,7 +24,7 @@
     "message": "BTWL Updated!"
   },
   "updateText1": {
-    "message": "Hi, I'm a dev of {btwl}, the extension that hides an annoying login wall. I'm glad that more and more people have recently tried the extension!"
+    "message": "{btwl} can now erase a login wall with no blinking popup, thanks to MutationObserver. Appreciate the suggestions!"
   },
   "updateText1_btwl": {
     "message": "BTWL"

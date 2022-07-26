@@ -5,7 +5,8 @@ browser.runtime.onInstalled.addListener(function () {
     if (
       tab.status === 'complete' &&
       tab.url &&
-      tab.url.match(/:\/\/twitter.com/)
+      (tab.url.match(/:\/\/twitter.com/) ||
+        tab.url.match(/:\/\/mobile.twitter.com/))
     ) {
       browser.pageAction.show(tabId)
     } else {
