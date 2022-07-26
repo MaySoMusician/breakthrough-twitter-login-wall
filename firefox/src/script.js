@@ -126,27 +126,24 @@ const showUpdateWindow = () => {
   updateMessageBox.show()
 }
 
-const observer = setInterval(() => {
-  const removed = attemptLoginWallRemoval()
+watch(() => {
+  setTimeout(async () => {
+    if (currentUpdateMsgBoxInstance) {
+      currentUpdateMsgBoxInstance.destory()
+      currentUpdateMsgBoxInstance = undefined
+    }
 
-  if (removed) {
-    setTimeout(async () => {
-      if (currentUpdateMsgBoxInstance) {
-        currentUpdateMsgBoxInstance.destory()
-        currentUpdateMsgBoxInstance = undefined
-      }
+    const lastShown = (await chrome.storage.local.get())[
+      globalThis.BTLW__STORAGE_KEYS.removalLastShown
+    ]
 
-      const lastShown = (await browser.storage.local.get())[
-        globalThis.BTLW__STORAGE_KEYS.removalLastShown
-      ]
+    if (!lastShown || Date.now() - lastShown > 7 * 24 * 60 * 60 * 1000) {
+      showDonationWindow()
+    }
+  }, 300)
+})
 
-      if (!lastShown || Date.now() - lastShown > 2 * 24 * 60 * 60 * 1000) {
-        showDonationWindow()
-      }
-    }, 300)
-  }
-}, 1000)
-
+//
 ;(async () => {
   let update = (await browser.storage.local.get())[
     globalThis.BTLW__STORAGE_KEYS.update

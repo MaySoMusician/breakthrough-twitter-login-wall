@@ -10,59 +10,62 @@ function _hideLoginDialog(
   return true
 }
 
+function _getLayersDiv() {
+  return new Promise((resolve, _reject) => {
+    const timer = () => {
+      const layers = document.querySelector('#layers')
+      if (layers) return resolve(layers)
+      setTimeout(timer, 500)
+    }
+    setTimeout(timer, 500)
+  })
+}
+
 /**
- * @returns {boolean} true if login wall is removed
+ * Starts watching for dialog to appear and hide it
+ * @param {*} callbackAfterRemoval Will be called right after and only once the dialog disappears.
  */
-function attemptLoginWallRemoval() {
-  const htmlElem = document.querySelector('html')
+async function watch(callbackAfterRemoval) {
+  const layersDiv = await _getLayersDiv()
 
-  const isPhotoDetailPage = document.location.href.match(
-    /\/status\/.*\/photo\//
-  )
-
-  const layerElements = Array.from(document.querySelectorAll('#layers > div'))
-
-  const dialogElements = layerElements
-    .map((elem) =>
-      Array.from(
-        elem.querySelectorAll(':scope > div > div > div[role="dialog"]')
-      )
+  const observer = new MutationObserver((mutationRecords) => {
+    const htmlElem = document.querySelector('html')
+    const isPhotoDetailPage = document.location.href.match(
+      /\/status\/.*\/photo\//
     )
-    .flat()
-    .filter((elem) => {
-      const photo = elem.querySelector(
-        ':scope > div > div > div[role="group"] > div[aria-modal="true"][aria-labelledby="modal-header"][role="dialog"]'
+
+    /** @type {HTMLDivElement[]} */
+    const dialogElements = mutationRecords
+      .flatMap((record) => Array.from(record.addedNodes))
+      // Only select div elements (other than any element, text, etc.)
+      .filter((addedNode) => addedNode.nodeName.toLowerCase() === 'div')
+      .flatMap((addedDiv) =>
+        Array.from(
+          addedDiv.querySelectorAll(':scope > div > div > div[role="dialog"]')
+        )
       )
-      // element containing any photo should not be hidden
-      return photo === null
-    })
+      .filter((dialog) => {
+        const photo = dialog.querySelector(
+          ':scope > div > div > div[role="group"] > div[aria-modal="true"][aria-labelledby="modal-header"][role="dialog"]'
+        )
+        // element containing any photo should NOT be hidden
+        return photo === null
+      })
 
-  let hidden = false
+    if (dialogElements.length < 1) return
 
-  if (isPhotoDetailPage) {
-    if (dialogElements.length >= 1) {
-      // Photo detail view
+    const hideTarget = dialogElements[0].parentNode.parentNode.parentNode
+    const hidden = _hideLoginDialog(hideTarget)
 
-      const target = dialogElements[0].parentNode.parentNode.parentNode
-      hidden = _hideLoginDialog(target)
+    applyOrderedStyles(htmlElem, [
+      ['overflow', isPhotoDetailPage ? 'hidden' : 'auto scroll'],
+      ['overscrollBehaviorY', isPhotoDetailPage ? 'none' : ''],
+      ['marginRight', ''],
+    ])
 
-      applyOrderedStyles(htmlElem, [
-        ['overflow', 'hidden'],
-        ['overscrollBehaviorY', 'none'],
-        ['marginRight', ''],
-      ])
+    if (hidden) {
+      callbackAfterRemoval()
     }
-  } else {
-    if (dialogElements.length >= 1) {
-      const target = dialogElements[0].parentNode.parentNode.parentNode
-      hidden = _hideLoginDialog(target)
-
-      applyOrderedStyles(htmlElem, [
-        ['overflow', 'auto scroll'],
-        ['overscrollBehaviorY', ''],
-        ['marginRight', ''],
-      ])
-    }
-  }
-  return hidden
+  })
+  observer.observe(layersDiv, { childList: true, subtree: false })
 }
